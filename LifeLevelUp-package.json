@@ -1,0 +1,21 @@
+{
+  "name": "life-level-up",
+  "displayName": "Life Level Up",
+  "version": "1.0.0",
+  "description": "Offline-first gamified productivity and lifestyle app",
+  "main": "index.js",
+  "scripts": {
+    "build": "cordova build android"
+  },
+  "keywords": [
+    "cordova",
+    "productivity",
+    "offline",
+    "rpg"
+  ],
+  "author": "Life Level Up",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "cordova": "^12.0.0"
+  }
+}
