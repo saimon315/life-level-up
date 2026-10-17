@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#151923">
+<title>Life Level Up</title>
+<style>
+:root{color-scheme:dark;--bg:#11141b;--panel:#191f2b;--panel2:#222a38;--text:#f1f4fb;--muted:#a6b0c3;--line:#30394a;--accent:#9caeff;--accent2:#7be0b0;--gold:#f4cf70;--danger:#ff9292;--shadow:0 8px 24px #0002}
+:root[data-theme="light"]{color-scheme:light;--bg:#f3f5fa;--panel:#fff;--panel2:#eef1f8;--text:#202738;--muted:#69748a;--line:#dce2ed;--accent:#5269d8;--accent2:#16845c;--gold:#9a6b00;--danger:#c44242;--shadow:0 8px 24px #25304a0d}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,"Noto Sans Bengali",sans-serif;min-height:100vh}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}button:active,.tap:active{transform:scale(.98);filter:brightness(.92)}.app{max-width:760px;margin:0 auto;padding:env(safe-area-inset-top) 16px calc(86px + env(safe-area-inset-bottom))}.topbar{display:flex;align-items:center;gap:12px;padding:20px 0 16px}.logo{width:46px;height:46px;border-radius:15px;background:var(--panel2);display:grid;place-items:center;font-size:24px}.brand{flex:1}.brand h1{font-size:19px;letter-spacing:.2px;margin:0}.sub{font-size:12px;color:var(--muted)}.icon-btn,.secondary,.nav-btn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:10px 12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow);min-width:0}.eyebrow{font-size:12px;color:var(--muted)}.big{font-size:26px;font-weight:750;letter-spacing:-.5px;margin:4px 0}.gold{color:var(--gold)}.row{display:flex;align-items:center;gap:10px}.between{justify-content:space-between}.progress{height:9px;background:var(--panel2);border-radius:99px;overflow:hidden;margin-top:8px}.progress>span{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .3s}.section-head{display:flex;align-items:center;justify-content:space-between;margin:24px 2px 12px}.section-head h2{font-size:17px;margin:0}.pill{font-size:12px;background:var(--panel2);padding:5px 9px;border-radius:99px;color:var(--muted)}.task-list{display:grid;gap:10px}.task{display:flex;gap:11px;align-items:center}.check{width:25px;height:25px;flex:none;border:1.5px solid var(--line);border-radius:8px;background:transparent;color:var(--accent2);display:grid;place-items:center;padding:0}.check.done{background:color-mix(in srgb,var(--accent2) 15%,var(--panel));border-color:var(--accent2)}.task-main{flex:1;min-width:0}.task-title{font-weight:650;overflow-wrap:anywhere}.task-title.done-text{color:var(--muted);text-decoration:line-through}.task-meta{font-size:12px;color:var(--muted);margin-top:2px}.task-reward{font-size:12px;white-space:nowrap;color:var(--accent2)}.primary{background:var(--accent);color:#101522;border:0;border-radius:12px;padding:12px 15px;font-weight:750}.primary.full{width:100%}.secondary{padding:11px 13px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted)}.field input,.field select,.field textarea{width:100%;min-width:0;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:11px;padding:11px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent)}.hidden{display:none!important}.bottom-nav{position:fixed;z-index:10;bottom:0;left:0;right:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px}.nav-btn{flex:1;max-width:170px;display:flex;justify-content:center;gap:7px;align-items:center;padding:11px 8px}.nav-btn.active{background:var(--panel2);border-color:var(--accent)}.notice{position:fixed;z-index:30;left:50%;bottom:90px;transform:translateX(-50%);width:max-content;max-width:calc(100% - 32px);background:var(--text);color:var(--bg);padding:12px 16px;border-radius:13px;box-shadow:var(--shadow);font-weight:650}.notice.level{background:var(--gold);color:#251d08}.empty{padding:22px;text-align:center;color:var(--muted)}.shop-item{display:flex;align-items:center;gap:12px}.shop-emoji{font-size:27px}.shop-item .task-main{flex:1}.small-btn{padding:8px 10px;font-size:12px}.streak-card{display:flex;align-items:center;gap:12px}.streak-fire{font-size:28px}.settings-actions{display:flex;gap:8px;flex-wrap:wrap}.muted{color:var(--muted)}.footnote{font-size:11px;color:var(--muted);margin-top:14px}.toast-space{height:1px}@media(min-width:600px){.app{padding-left:22px;padding-right:22px}.card{padding:19px}.task-list{grid-template-columns:1fr 1fr}.task-list .task{align-items:flex-start}.task-list .task-reward{margin-left:auto}}@media(max-width:360px){.app{padding-left:11px;padding-right:11px}.card{padding:13px}.big{font-size:23px}.task{gap:8px}.task-reward{font-size:11px}.topbar h1{font-size:17px}.nav-btn{font-size:13px}}
+
+/* Life Level Up v2: calm, progressive feature hub */
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.feature-tile{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:15px;padding:13px;text-align:left;min-height:92px}.feature-tile strong{display:block;font-size:14px;margin:5px 0 2px}.feature-tile small{display:block;color:var(--muted);font-size:11px;line-height:1.35}.feature-emoji{font-size:21px}.feature-panel{margin-top:12px}.feature-panel h3{margin:0 0 10px;font-size:16px}.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bar-row{display:grid;grid-template-columns:90px 1fr 38px;gap:8px;align-items:center;margin:10px 0;font-size:12px}.bar-track{height:8px;border-radius:20px;background:var(--panel2);overflow:hidden}.bar-fill{height:100%;background:var(--accent);border-radius:20px}.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}.cal-day{aspect-ratio:1;border-radius:8px;background:var(--panel2);display:grid;place-items:center;font-size:11px;color:var(--muted)}.cal-day.has{background:color-mix(in srgb,var(--accent2) 35%,var(--panel));color:var(--text);font-weight:700}.cal-day.today{outline:1px solid var(--accent)}.badge-item,.skill-item,.inventory-item{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}.badge-item:last-child,.skill-item:last-child,.inventory-item:last-child{border-bottom:0}.badge-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--panel2);font-size:21px;flex:none}.item-main{flex:1;min-width:0}.item-main strong{display:block}.item-main small{display:block;color:var(--muted);font-size:12px}.locked{opacity:.52}.boss-progress{height:12px;border-radius:20px;background:var(--panel2);overflow:hidden;margin:12px 0}.boss-progress span{display:block;height:100%;background:var(--accent2);transition:width .35s}.timer-face{font-size:42px;font-weight:800;text-align:center;letter-spacing:1px;padding:18px 0}.focus-actions{display:flex;gap:8px}.focus-actions>*{flex:1}.feature-note{font-size:12px;color:var(--muted);margin:7px 0 0}.micro-animate{animation:microPop .35s ease-out}@keyframes microPop{0%{transform:scale(.97);opacity:.75}100%{transform:scale(1);opacity:1}}@media(max-width:360px){.feature-grid{gap:7px}.feature-tile{padding:10px}.bar-row{grid-template-columns:78px 1fr 32px}}
+
+
+.motivation-card{margin-top:22px;position:relative;overflow:hidden;border-color:color-mix(in srgb,var(--gold) 40%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 9%,var(--panel)),var(--panel) 68%)}.motivation-card:before{content:"✦";position:absolute;right:16px;top:8px;font-size:54px;line-height:1;color:color-mix(in srgb,var(--gold) 16%,transparent)}.motivation-quote{font-size:18px;line-height:1.7;font-weight:750;margin:8px 0 12px;max-width:92%;position:relative}.life-rule-list{display:grid;gap:8px;margin-top:12px}.life-rule{display:flex;gap:9px;align-items:flex-start;padding:10px;border-radius:12px;background:color-mix(in srgb,var(--panel2) 72%,transparent);border:1px solid var(--line)}.life-rule-text{flex:1;min-width:0;overflow-wrap:anywhere}.life-rule-actions{display:flex;gap:5px;flex-wrap:wrap}.rule-form{display:grid;gap:9px;margin-top:12px}.rule-form textarea{width:100%;min-height:76px;resize:vertical;background:var(--bg);color:var(--text);border:1px solid var(--line);border-radius:11px;padding:11px;font:inherit}.motivation-actions{display:flex;gap:8px;flex-wrap:wrap}.motivation-actions>*{flex:1}.wallpaper-theme-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.wallpaper-card{overflow:hidden;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.wallpaper-card img{width:100%;height:150px;object-fit:cover;display:block}.wallpaper-info{padding:10px}.wallpaper-info strong{display:block;font-size:13px}.wallpaper-info small{color:var(--muted);font-size:11px}.wallpaper-info button{width:100%;margin-top:8px}.wallpaper-active{outline:2px solid var(--accent2)}body.wallpaper-theme-active{position:relative;isolation:isolate}body.wallpaper-theme-active{background-image:linear-gradient(rgba(10,12,18,.70),rgba(10,12,18,.70)),var(--wallpaper-image)!important;background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed}body.photo-theme-active{position:relative;isolation:isolate}
+body.photo-theme-active::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(12,15,22,var(--photo-theme-overlay,.62)),rgba(12,15,22,var(--photo-theme-overlay,.62))),var(--photo-theme-image);background-size:cover;background-position:center;background-repeat:no-repeat}
+body.photo-theme-active .card,body.photo-theme-active .panel,body.photo-theme-active .bottom-nav{backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="logo" aria-hidden="true">⚔️</div>
+    <div class="brand"><h1>Life Level Up</h1><div class="sub">নিজের জীবনের নায়ক হও</div></div>
+    <button class="icon-btn" id="themeToggle" type="button" aria-label="থিম বদলাও">☀️</button>
+  </header>
+
+  <main>
+    <section id="dashboardView">
+      <div class="card" style="margin-bottom:12px">
+        <div class="row between"><div><div class="eyebrow">PLAYER PROFILE</div><div class="big" id="levelLabel">Level 1</div></div><span class="pill" id="rankLabel">New Adventurer</span></div>
+        <div class="row between" style="margin-top:12px"><span class="eyebrow">পরের লেভেলের XP</span><span class="eyebrow" id="xpLabel">0 / 100 XP</span></div>
+        <div class="progress"><span id="levelProgress"></span></div>
+      </div>
+      <div class="stats">
+        <div class="card"><div class="eyebrow">মোট XP</div><div class="big" id="totalXp">0 XP</div><div class="sub">প্রতিটি কাজের পুরস্কার</div></div>
+        <div class="card"><div class="eyebrow">Coins</div><div class="big gold" id="coins">0 ◈</div><div class="sub">রিওয়ার্ড আনলক করো</div></div>
+        <div class="card"><div class="eyebrow">আজকের অগ্রগতি</div><div class="big" id="todayCount">0 / 0</div><div class="progress"><span id="dailyProgress"></span></div></div>
+        <div class="card"><div class="eyebrow">বর্তমান Streak</div><div class="big" id="streak">0 🔥</div><div class="sub" id="streakHint">আজ একটি Quest শেষ করো</div></div>
+      </div>
+      <div class="section-head"><h2>আজকের Quests</h2><button class="secondary small-btn" id="goTasks" type="button">সব দেখো →</button></div>
+      <div class="task-list" id="todayTasks"></div>
+      <div class="section-head"><h2>Streak Milestone</h2><span class="pill" id="streakMilestone">3 দিনের লক্ষ্য</span></div>
+      <div class="card"><div class="row between"><span>🔥 ধারাবাহিকতা</span><strong id="streakProgressLabel">0 / 3 দিন</strong></div><div class="progress"><span id="streakProgress"></span></div><div class="sub" style="margin-top:8px">প্রতিদিন অন্তত একটি Quest শেষ করলে Streak বাড়বে।</div></div>
+      <section class="card motivation-card" aria-labelledby="motivationTitle">
+        <div class="row between"><div class="eyebrow gold">✦ DAILY MOTIVATION</div><span class="pill">নিজেকে মনে করাও</span></div>
+        <h2 id="motivationTitle" style="font-size:18px;margin:8px 0 0">আজকের কথা</h2>
+        <p class="motivation-quote" id="dailyQuote">ছোট ছোট পদক্ষেপই বড় পরিবর্তন তৈরি করে।</p>
+        <div class="divider" style="height:1px;background:var(--line);margin:12px 0"></div>
+        <div class="row between"><div><div class="eyebrow gold">MY LIFE RULES</div><strong>আমার নিজের নিয়ম</strong></div><button class="secondary small-btn" id="toggleRuleForm" type="button">＋ নিয়ম যোগ</button></div>
+        <div id="lifeRulesList" class="life-rule-list"></div>
+        <form id="lifeRuleForm" class="rule-form hidden">
+          <label class="eyebrow" for="lifeRuleInput">তোমার নিয়ম বা নিজের জন্য বার্তা</label>
+          <textarea id="lifeRuleInput" maxlength="240" required placeholder="যেমন: Motivation-এর অপেক্ষা নয়, আজকের কাজটা শুরু করো।"></textarea>
+          <div class="motivation-actions"><button class="primary" id="saveLifeRule" type="submit">নিয়ম সেভ করো</button><button class="secondary" id="cancelLifeRule" type="button">বাতিল</button></div>
+        </form>
+        <p class="feature-note">তোমার নিয়ম এই ফোনে সেভ থাকবে। ছোট করে শুরু করো, নিজের সঙ্গে করা কথা রাখো।</p>
+      </section>
+    </section>
+
+    <section id="tasksView" class="hidden">
+      <div class="section-head" style="margin-top:8px"><h2>Quest Board</h2><span class="pill" id="taskCount">0টি কাজ</span></div>
+      <div class="card">
+        <form id="taskForm">
+          <div class="form-grid">
+            <div class="field full"><label for="taskName">কাজের নাম</label><input id="taskName" maxlength="100" required placeholder="যেমন: ৩০ মিনিট পড়াশোনা"></div>
+            <div class="field"><label for="taskDifficulty">কঠিনতার মাত্রা</label><select id="taskDifficulty"><option value="easy">Easy · 10 XP</option><option value="medium">Medium · 25 XP</option><option value="hard">Hard · 50 XP</option></select></div>
+            <div class="field"><label for="taskPeriod">সময়সীমা</label><select id="taskPeriod"><option value="daily">প্রতিদিন</option><option value="weekly">এই সপ্তাহে</option></select></div>
+            <div class="field full"><button class="primary full" type="submit">＋ নতুন Quest যোগ করো</button></div>
+          </div>
+        </form>
+      </div>
+      <div class="section-head"><h2>সব Quests</h2><span class="sub">সম্পন্ন করলে XP ও Coins পাবে</span></div>
+      <div class="task-list" id="allTasks"></div>
+    </section>
+
+    <section id="shopView" class="hidden">
+      <div class="section-head" style="margin-top:8px"><h2>Reward Shop</h2><span class="pill" id="shopCoins">0 ◈</span></div>
+      <div class="card"><div class="sub">নিজের অর্জিত Coins দিয়ে ভার্চুয়াল রিওয়ার্ড আনলক করো। রিওয়ার্ডগুলো কাস্টমাইজ করতে পারবে।</div></div>
+      <div class="task-list" id="shopItems" style="margin-top:12px"></div>
+      <div class="section-head"><h2>নিজের Reward যোগ করো</h2></div>
+      <div class="card"><form id="rewardForm"><div class="form-grid">
+        <div class="field full"><label for="rewardName">রিওয়ার্ডের নাম</label><input id="rewardName" maxlength="70" required placeholder="যেমন: প্রিয় সিনেমা দেখব"></div>
+        <div class="field"><label for="rewardCost">Coin মূল্য</label><input id="rewardCost" type="number" min="1" max="100000" value="30" required></div>
+        <div class="field"><label for="rewardIcon">ইমোজি</label><input id="rewardIcon" maxlength="4" value="🎁"></div>
+        <div class="field full"><button class="primary full" type="submit">Reward যোগ করো</button></div>
+      </div></form></div>
+    </section>
+
+    <section id="profileView" class="hidden">
+      <div class="section-head" style="margin-top:8px"><h2>Player Profile</h2></div>
+      <div class="card">
+        <div class="row"><div class="logo">🛡️</div><div><div class="big" id="profileLevel">Level 1</div><div class="sub" id="profileStats">0 XP · 0 Coins</div></div></div>
+        <div class="section-head"><h2>অগ্রগতি</h2></div>
+        <div class="row between"><span class="muted">মোট Quest সম্পন্ন</span><strong id="completedTotal">0</strong></div>
+        <div class="row between" style="margin-top:10px"><span class="muted">সেরা Streak</span><strong id="bestStreak">0 দিন</strong></div>
+        <div class="row between" style="margin-top:10px"><span class="muted">আনলক করা Reward</span><strong id="unlockedCount">0</strong></div>
+      </div>
+      <div class="section-head"><h2>ডেটা ব্যাকআপ</h2></div>
+      <div class="card">
+        <p class="sub">ডেটা এই ফোনেই থাকবে। JSON ফাইল ডাউনলোড করে নিরাপদ জায়গায় রাখো। অ্যাপের ডেটা মুছে গেলে সেই ফাইল দিয়ে Restore করা যাবে।</p>
+        <div class="settings-actions"><button class="primary" id="exportBtn" type="button">↓ Backup নাও</button><button class="secondary" id="importBtn" type="button">↑ Restore করো</button><input class="hidden" id="importFile" type="file" accept=".json,application/json"></div>
+        <div class="footnote">Restore করলে বর্তমান ডেটা প্রতিস্থাপিত হবে। আগে বর্তমান ডেটার Backup নিয়ে নাও।</div>
+      </div>
+      <div class="section-head"><h2>অ্যাপ সেটিংস</h2></div>
+      <div class="card">
+        <div class="row between"><div><strong>রঙের থিম</strong><div class="sub">Dark অথবা Light</div></div><button class="secondary" id="themeToggle2" type="button">থিম বদলাও</button></div>
+        <div style="height:12px"></div><button class="secondary" id="resetBtn" type="button">ডেমো ডেটা রিসেট</button>
+        <div class="footnote">রিসেট করলে সব Quest, XP, Coins ও ইতিহাস মুছে যাবে।</div>
+      </div>
+    </section>
+
+    <section id="featuresView" class="hidden">
+      <div class="section-head" style="margin-top:8px"><div><h2>অতিরিক্ত ফিচার</h2><div class="sub">প্রয়োজনমতো একটি বেছে নাও</div></div><span class="pill">ঐচ্ছিক</span></div>
+      <div class="feature-grid" id="featureTiles">
+        <button class="feature-tile" data-feature="stats"><span class="feature-emoji">📊</span><strong>Player Stats</strong><small>তোমার দক্ষতার অগ্রগতি</small></button>
+        <button class="feature-tile" data-feature="achievements"><span class="feature-emoji">🏅</span><strong>Achievements</strong><small>ব্যাজ ও মাইলস্টোন</small></button>
+        <button class="feature-tile" data-feature="boss"><span class="feature-emoji">🐉</span><strong>Boss Battle</strong><small>সাপ্তাহিক চ্যালেঞ্জ</small></button>
+        <button class="feature-tile" data-feature="skills"><span class="feature-emoji">🌱</span><strong>Skill Tree</strong><small>Coins দিয়ে Skill আনলক</small></button>
+        <button class="feature-tile" data-feature="calendar"><span class="feature-emoji">🗓️</span><strong>Quest Calendar</strong><small>শেষ করা কাজের দিন</small></button>
+        <button class="feature-tile" data-feature="focus"><span class="feature-emoji">⏱️</span><strong>Focus Mode</strong><small>২৫ মিনিটের ফোকাস সেশন</small></button>
+        <button class="feature-tile" data-feature="routine"><span class="feature-emoji">🌅</span><strong>Daily Routine</strong><small>আজকের রুটিন সাজাও</small></button>
+        <button class="feature-tile" data-feature="habits"><span class="feature-emoji">🔥</span><strong>Habit Tracker</strong><small>অভ্যাস ও ধারাবাহিকতা</small></button>
+        <button class="feature-tile" data-feature="journal"><span class="feature-emoji">📓</span><strong>Daily Journal</strong><small>আজকের ভাবনা লিখে রাখো</small></button>
+        <button class="feature-tile" data-feature="weeklyreview"><span class="feature-emoji">🗓️</span><strong>Weekly Review</strong><small>গত ৭ দিনের উন্নতি দেখো</small></button>
+        <button class="feature-tile" data-feature="inventory"><span class="feature-emoji">🎒</span><strong>Inventory</strong><small>আনলক করা আইটেম</small></button>
+        <button class="feature-tile" data-feature="analytics"><span class="feature-emoji">📈</span><strong>Analytics</strong><small>সাম্প্রতিক অগ্রগতি</small></button>
+        <button class="feature-tile" data-feature="custom"><span class="feature-emoji">✍️</span><strong>Custom Quest</strong><small>নিজের XP ও Coin ঠিক করো</small></button>
+        <button class="feature-tile" data-feature="effects"><span class="feature-emoji">✨</span><strong>Effects</strong><small>অ্যানিমেশন ও সাউন্ড সেটিং</small></button>
+        <button class="feature-tile" data-feature="deen"><span class="feature-emoji">🌿</span><strong>Deen & Character</strong><small>ইবাদত, ভালো কাজ ও আত্মসংযম</small></button>
+        <button class="feature-tile" data-feature="wallpapers"><span class="feature-emoji">🌑</span><strong>Wallpaper Themes</strong><small>৯টি Samurai theme · ১০০–৫০০ Coins</small></button>
+        <button class="feature-tile" data-feature="customtheme"><span class="feature-emoji">🖼️</span><strong>My Photo Theme</strong><small>নিজের ছবি দিয়ে Theme</small></button>
+      </div>
+      <div id="featureDetail" class="card feature-panel hidden" aria-live="polite"></div>
+      <p class="feature-note">সব ফিচার ঐচ্ছিক। হোম, Quests, Shop ও Profile আগের মতোই থাকবে।</p>
+    </section>
+  </main>
+</div>
+
+<nav class="bottom-nav" aria-label="প্রধান নেভিগেশন">
+  <button class="nav-btn active" data-view="dashboardView" type="button">⌂ <span>হোম</span></button>
+  <button class="nav-btn" data-view="tasksView" type="button">⚔ <span>Quests</span></button>
+  <button class="nav-btn" data-view="shopView" type="button">◇ <span>Shop</span></button>
+  <button class="nav-btn" data-view="profileView" type="button">♙ <span>Profile</span></button>
+  <button class="nav-btn" data-view="featuresView" type="button">＋ <span>আরও</span></button>
+</nav>
+<div id="toast" class="notice hidden" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+'use strict';
+const STORAGE_KEY='life-level-up-v1';
+const XP_REWARDS={easy:10,medium:25,hard:50};
+const COIN_REWARDS={easy:5,medium:12,hard:25};
+const DIFFICULTY_NAMES={easy:'Easy',medium:'Medium',hard:'Hard'};
+const $=id=>document.getElementById(id);
+const localDateKey=(date=new Date())=>`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+const weekKey=(date=new Date())=>{const d=new Date(date.getFullYear(),date.getMonth(),date.getDate());const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);return localDateKey(d);};
+const newId=()=>`${Date.now().toString(36)}-${Math.random().toString(36).slice(2,8)}`;
+function defaultState(){return {version:2,player:{totalXp:0,coins:0,streak:0,bestStreak:0,lastCompletionDate:null,level:1,theme:'dark',skills:[],equippedReward:null,sound:false,animations:true,focusSessions:0},tasks:[
+{id:newId(),name:'৩০ মিনিট পড়াশোনা',difficulty:'easy',period:'daily',createdAt:Date.now(),active:true},
+{id:newId(),name:'গণিতের হোমওয়ার্ক শেষ করা',difficulty:'medium',period:'daily',createdAt:Date.now(),active:true},
+{id:newId(),name:'২০ মিনিট ব্যায়াম',difficulty:'easy',period:'daily',createdAt:Date.now(),active:true},
+{id:newId(),name:'সাপ্তাহিক লক্ষ্য পরিকল্পনা',difficulty:'hard',period:'weekly',createdAt:Date.now(),active:true}
+],completions:[],rewards:[
+{id:newId(),name:'নিজের পছন্দের Avatar',icon:'🧙',cost:40,unlocked:false},
+{id:newId(),name:'নতুন Theme',icon:'🎨',cost:75,unlocked:false},
+{id:newId(),name:'বিশেষ Reward',icon:'🏆',cost:120,unlocked:false}
+]};}
+function normalizeState(raw){
+ if(!raw||typeof raw!=='object'||!raw.player||!Array.isArray(raw.tasks)||!Array.isArray(raw.completions)||!Array.isArray(raw.rewards))throw new Error('ব্যাকআপ ফাইলের গঠন সঠিক নয়।');
+ const p=raw.player;
+ return {version:2,player:{totalXp:Math.max(0,Number(p.totalXp)||0),coins:Math.max(0,Number(p.coins)||0),streak:Math.max(0,Number(p.streak)||0),bestStreak:Math.max(0,Number(p.bestStreak)||0),lastCompletionDate:typeof p.lastCompletionDate==='string'?p.lastCompletionDate:null,level:Math.max(1,Number(p.level)||1),theme:p.theme==='light'?'light':'dark',skills:Array.isArray(p.skills)?p.skills.filter(x=>typeof x==='string'):[],equippedReward:typeof p.equippedReward==='string'?p.equippedReward:null,sound:!!p.sound,animations:p.animations!==false,focusSessions:Math.max(0,Number(p.focusSessions)||0)},tasks:raw.tasks.filter(t=>t&&typeof t.id==='string'&&typeof t.name==='string').map(t=>({id:t.id,name:t.name.slice(0,100),difficulty:['easy','medium','hard'].includes(t.difficulty)?t.difficulty:'easy',period:t.period==='weekly'?'weekly':'daily',createdAt:Number(t.createdAt)||Date.now(),active:t.active!==false,rewardXp:t.rewardXp!==null&&t.rewardXp!==undefined&&Number.isFinite(Number(t.rewardXp))?Math.max(1,Math.min(500,Number(t.rewardXp))):null,rewardCoins:t.rewardCoins!==null&&t.rewardCoins!==undefined&&Number.isFinite(Number(t.rewardCoins))?Math.max(0,Math.min(500,Number(t.rewardCoins))):null})),completions:raw.completions.filter(c=>c&&typeof c.taskId==='string'&&typeof c.date==='string'&&['daily','weekly'].includes(c.period)),rewards:raw.rewards.filter(r=>r&&typeof r.id==='string'&&typeof r.name==='string').map(r=>({id:r.id,name:r.name.slice(0,70),icon:typeof r.icon==='string'?r.icon:'🎁',cost:Math.max(1,Number(r.cost)||1),unlocked:!!r.unlocked}))};
+}
+function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);return raw?normalizeState(JSON.parse(raw)):defaultState();}catch(err){return defaultState();}}
+let state=loadState();
+let toastTimer=null;
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(state));}
+function xpForNextLevel(level){return 100+(Math.max(1,level)-1)*50;}
+function levelFromTotalXp(totalXp){let level=1,remaining=Math.max(0,totalXp);while(remaining>=xpForNextLevel(level)){remaining-=xpForNextLevel(level);level++;if(level>100000)break;}return {level,intoLevel:remaining,needed:xpForNextLevel(level)};}
+function showToast(message,isLevel=false){const toast=$('toast');toast.textContent=message;toast.classList.remove('hidden','level');if(isLevel)toast.classList.add('level');if(toastTimer)clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.add('hidden'),2800);}
+function completionsForPeriod(task,now=new Date()){const today=localDateKey(now),week=weekKey(now);return state.completions.filter(c=>c.taskId===task.id&&(task.period==='daily'?c.date===today:c.week===week));}
+function isCompleted(task){return completionsForPeriod(task).length>0;}
+function updateStreak(completedDate){
+ const p=state.player,prev=p.lastCompletionDate;
+ if(prev===completedDate)return;
+ if(!prev){p.streak=1;}
+ else{const prevDate=new Date(prev+'T12:00:00');const curDate=new Date(completedDate+'T12:00:00');const diff=Math.round((curDate-prevDate)/86400000);p.streak=diff===1?p.streak+1:1;}
+ p.lastCompletionDate=completedDate;p.bestStreak=Math.max(p.bestStreak,p.streak);
+}
+function completeTask(taskId){
+ const task=state.tasks.find(t=>t.id===taskId);if(!task||isCompleted(task)){showToast('এই Quest আজ/এই সপ্তাহে ইতিমধ্যে সম্পন্ন হয়েছে।');return;}
+ const oldLevel=levelFromTotalXp(state.player.totalXp).level;
+ const date=localDateKey(),xp=task.rewardXp||XP_REWARDS[task.difficulty],coins=task.rewardCoins!==null&&task.rewardCoins!==undefined?task.rewardCoins:COIN_REWARDS[task.difficulty];
+ state.completions.push({id:newId(),taskId:task.id,date,week:weekKey(),period:task.period,xp,coins,completedAt:Date.now()});
+ state.player.totalXp+=xp;state.player.coins+=coins;
+ const newLevel=levelFromTotalXp(state.player.totalXp).level;state.player.level=newLevel;
+ updateStreak(date);save();render();
+ showToast(newLevel>oldLevel?`🎉 LEVEL UP! এখন Level ${newLevel}! +${xp} XP`:`Quest complete! +${xp} XP · +${coins} Coins`,newLevel>oldLevel);playSoftSound();
+}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+function taskMarkup(task){
+ const done=isCompleted(task),xp=task.rewardXp||XP_REWARDS[task.difficulty],coins=task.rewardCoins!==null&&task.rewardCoins!==undefined?task.rewardCoins:COIN_REWARDS[task.difficulty];
+ return `<article class="card task"><button class="check ${done?'done':''}" type="button" data-complete="${escapeHtml(task.id)}" aria-label="${done?'সম্পন্ন':'Quest সম্পন্ন করো'}" ${done?'disabled':''}>${done?'✓':''}</button><div class="task-main"><div class="task-title ${done?'done-text':''}">${escapeHtml(task.name)}</div><div class="task-meta">${DIFFICULTY_NAMES[task.difficulty]} · ${task.period==='daily'?'প্রতিদিন':'সাপ্তাহিক'}</div></div><div class="task-reward">+${xp} XP<br>+${coins} ◈</div><button class="icon-btn small-btn" type="button" data-delete="${escapeHtml(task.id)}" aria-label="Quest মুছুন">×</button></article>`;
+}
+function renderTasks(){
+ const active=state.tasks.filter(t=>t.active);
+ const today=active.filter(t=>t.period==='daily'),doneToday=today.filter(isCompleted).length;
+ $('todayTasks').innerHTML=today.length?today.slice(0,4).map(taskMarkup).join(''):'<div class="card empty">কোনো দৈনিক Quest নেই। Quests থেকে যোগ করো।</div>';
+ $('allTasks').innerHTML=active.length?active.map(taskMarkup).join(''):'<div class="card empty">এখনও কোনো Quest নেই। উপরের ফর্ম থেকে যোগ করো।</div>';
+ $('taskCount').textContent=`${active.length}টি কাজ`;
+ $('todayCount').textContent=`${doneToday} / ${today.length}`;
+ $('dailyProgress').style.width=`${today.length?Math.round(doneToday/today.length*100):0}%`;
+}
+function renderShop(){
+ $('shopCoins').textContent=`${state.player.coins} ◈`;
+ $('shopItems').innerHTML=state.rewards.length?state.rewards.map(r=>`<article class="card shop-item"><div class="shop-emoji">${escapeHtml(r.icon)}</div><div class="task-main"><div class="task-title">${escapeHtml(r.name)}</div><div class="task-meta">${r.unlocked?'আনলক করা হয়েছে':`${r.cost} Coins`}</div></div><button class="${r.unlocked?'secondary':'primary'} small-btn" type="button" data-buy="${escapeHtml(r.id)}" ${r.unlocked?'disabled':''}>${r.unlocked?'Unlocked':`আনলক · ${r.cost} ◈`}</button></article>`).join(''):'<div class="card empty">কোনো Reward নেই। নতুন Reward যোগ করো।</div>';
+}
+function renderProfile(){
+ const p=state.player;
+ $('profileLevel').textContent=`Level ${levelFromTotalXp(p.totalXp).level}`;
+ $('profileStats').textContent=`${p.totalXp} XP · ${p.coins} Coins`;
+ $('completedTotal').textContent=state.completions.length;
+ $('bestStreak').textContent=`${p.bestStreak} দিন`;
+ $('unlockedCount').textContent=state.rewards.filter(r=>r.unlocked).length;
+}
+const LIFE_RULES_KEY='life-level-up-life-rules-v1';
+const DAILY_QUOTES=[
+ 'আজ নিখুঁত হতে হবে না—গতকালের চেয়ে এক ধাপ এগোলেই যথেষ্ট।',
+ 'Motivation কম থাকলেও ছোট কাজটা শুরু করো। কাজের মাঝেই গতি আসতে পারে।',
+ 'তোমার ভবিষ্যৎ তৈরি হয় আজকের ছোট ছোট সিদ্ধান্তে।',
+ 'একদিনে সব বদলাতে হবে না। প্রতিদিন একটু করে এগিয়ে যাও।',
+ 'নিজের সঙ্গে করা ছোট প্রতিশ্রুতিটাও রাখো। এভাবেই বিশ্বাস তৈরি হয়।',
+ 'ভুল মানে শেষ নয়—শেখো, ঠিক করো, আবার চেষ্টা করো।',
+ 'অন্যের গতির সঙ্গে নয়, নিজের গতকালের সঙ্গে তুলনা করো।'
+];
+function loadLifeRules(){try{const v=JSON.parse(localStorage.getItem(LIFE_RULES_KEY)||'[]');return Array.isArray(v)?v.filter(x=>x&&typeof x.id==='string'&&typeof x.text==='string').slice(0,30):[]}catch(e){return []}}
+let lifeRules=loadLifeRules(),editingLifeRuleId=null;
+function saveLifeRules(){localStorage.setItem(LIFE_RULES_KEY,JSON.stringify(lifeRules));}
+const ROUTINE_KEY='life-level-up-routine-v1', HABITS_KEY='life-level-up-habits-v1', JOURNAL_KEY='life-level-up-journal-v1';
+const ROUTINE_DEFAULTS=[{id:'wake',text:'সময়মতো ঘুম থেকে ওঠা'},{id:'study',text:'পড়াশোনা / শেখা'},{id:'move',text:'হালকা ব্যায়াম বা হাঁটা'},{id:'plan',text:'আগামী দিনের পরিকল্পনা'}];
+function safeArray(key,fallback=[]){try{const v=JSON.parse(localStorage.getItem(key)||'null');return Array.isArray(v)?v:fallback.map(x=>({...x}));}catch(e){return fallback.map(x=>({...x}));}}
+let routineItems=safeArray(ROUTINE_KEY,ROUTINE_DEFAULTS),routineChecks=safeArray(ROUTINE_KEY+'-checks',[]),habits=safeArray(HABITS_KEY,[{id:'water',name:'পর্যাপ্ত পানি পান'},{id:'read',name:'প্রতিদিন কিছু শেখা'},{id:'tidy',name:'নিজের জায়গা গুছানো'}]),habitChecks=safeArray(HABITS_KEY+'-checks',[]),journalEntries=safeArray(JOURNAL_KEY,[]);
+function saveRoutine(){localStorage.setItem(ROUTINE_KEY,JSON.stringify(routineItems));localStorage.setItem(ROUTINE_KEY+'-checks',JSON.stringify(routineChecks));}
+function saveHabits(){localStorage.setItem(HABITS_KEY,JSON.stringify(habits));localStorage.setItem(HABITS_KEY+'-checks',JSON.stringify(habitChecks));}
+function saveJournal(){localStorage.setItem(JOURNAL_KEY,JSON.stringify(journalEntries));}
+function checkedToday(list,id){return list.some(x=>x.id===id&&x.date===localDateKey());}
+function toggleCheck(list,id){const today=localDateKey(),idx=list.findIndex(x=>x.id===id&&x.date===today);if(idx>=0)list.splice(idx,1);else list.push({id,date:today,at:Date.now()});}
+function streakForHabit(id){let n=0;const d=new Date();while(true){const key=localDateKey(d);if(!habitChecks.some(x=>x.id===id&&x.date===key))break;n++;d.setDate(d.getDate()-1);if(n>3650)break;}return n;}
+function renderRoutine(){const done=routineItems.filter(x=>checkedToday(routineChecks,x.id)).length;return `<div class="row between"><span class="muted">আজকের রুটিন</span><strong>${done}/${routineItems.length} সম্পন্ন</strong></div><div class="progress"><span style="width:${routineItems.length?done/routineItems.length*100:0}%"></span></div><div style="margin-top:12px">${routineItems.map(x=>`<div class="life-rule"><button class="check ${checkedToday(routineChecks,x.id)?'done':''}" data-routine-check="${escapeHtml(x.id)}" type="button">${checkedToday(routineChecks,x.id)?'✓':''}</button><div class="life-rule-text">${escapeHtml(x.text)}</div><button class="secondary small-btn" data-routine-delete="${escapeHtml(x.id)}" type="button">×</button></div>`).join('')}</div><form id="routineAddForm" class="rule-form"><input name="routineName" maxlength="90" required placeholder="নতুন রুটিন যোগ করো"><button class="primary full" type="submit">＋ রুটিন যোগ</button></form><p class="feature-note">প্রতিদিনের চেকলিস্ট নতুন দিনে আবার শুরু হবে।</p>`;}
+function renderHabits(){return `<form id="habitAddForm" class="form-grid"><div class="field"><label for="habitName">নতুন অভ্যাস</label><input id="habitName" name="habitName" maxlength="70" required placeholder="যেমন: ১০ মিনিট পড়া"></div><div class="field" style="align-self:end"><button class="primary full" type="submit">＋ যোগ</button></div></form><div style="margin-top:10px">${habits.length?habits.map(h=>{const done=checkedToday(habitChecks,h.id);return `<div class="life-rule"><button class="check ${done?'done':''}" data-habit-check="${escapeHtml(h.id)}" type="button">${done?'✓':''}</button><div class="life-rule-text"><strong>${escapeHtml(h.name)}</strong><div class="sub">🔥 ${streakForHabit(h.id)} দিনের বর্তমান streak</div></div><button class="secondary small-btn" data-habit-delete="${escapeHtml(h.id)}" type="button">×</button></div>`}).join(''):'<div class="empty">প্রথম অভ্যাসটি যোগ করো।</div>'}</div><p class="feature-note">একদিন বাদ পড়লে সমস্যা নেই—আবার শুরু করাই আসল।</p>`;}
+function renderJournal(){const todayEntry=journalEntries.find(x=>x.date===localDateKey())||{};return `<form id="journalForm" class="rule-form"><div class="field"><label for="journalWin">আজ কী ভালো করেছ?</label><textarea id="journalWin" name="journalWin" maxlength="500" placeholder="একটি ছোট সাফল্য লিখো...">${escapeHtml(todayEntry.win||'')}</textarea></div><div class="field"><label for="journalLearn">আজ কী শিখেছ?</label><textarea id="journalLearn" name="journalLearn" maxlength="500" placeholder="নতুন কিছু, ভুল, বা শেখা...">${escapeHtml(todayEntry.learn||'')}</textarea></div><div class="field"><label for="journalNext">আগামীকাল কী করবে?</label><textarea id="journalNext" name="journalNext" maxlength="500" placeholder="একটি বাস্তবসম্মত পরবর্তী পদক্ষেপ...">${escapeHtml(todayEntry.next||'')}</textarea></div><button class="primary full" type="submit">আজকের Journal সেভ করো</button></form><h4>আগের নোট</h4>${journalEntries.length?journalEntries.slice(0,10).map(j=>`<div class="life-rule"><div class="life-rule-text"><strong>${escapeHtml(j.date)}</strong><p>${escapeHtml(j.win||'—')}</p><small class="muted">শিখেছি: ${escapeHtml(j.learn||'—')}<br>আগামীকাল: ${escapeHtml(j.next||'—')}</small></div><button class="secondary small-btn" data-journal-delete="${escapeHtml(j.id)}" type="button">×</button></div>`).join(''):'<div class="sub">এখনও কোনো Journal নেই।</div>'}<p class="feature-note">Journal ব্যক্তিগতভাবে এই ফোনে সেভ থাকে।</p>`;}
+function renderWeeklyReview(){const keys=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);keys.push(localDateKey(d));}const questCount=state.completions.filter(x=>keys.includes(x.date)).length;const routineCount=routineChecks.filter(x=>keys.includes(x.date)).length;const habitCount=habitChecks.filter(x=>keys.includes(x.date)).length;const journalCount=journalEntries.filter(x=>keys.includes(x.date)).length;const activeDays=new Set([...state.completions.map(x=>x.date),...routineChecks.map(x=>x.date),...habitChecks.map(x=>x.date),...journalEntries.map(x=>x.date)].filter(x=>keys.includes(x))).size;return `<div class="stat-grid"><div class="card"><div class="eyebrow">Quest সম্পন্ন</div><div class="big">${questCount}</div></div><div class="card"><div class="eyebrow">রুটিন টিক</div><div class="big">${routineCount}</div></div><div class="card"><div class="eyebrow">Habit check-in</div><div class="big">${habitCount}</div></div><div class="card"><div class="eyebrow">Journal দিন</div><div class="big">${journalCount}</div></div></div><div class="card" style="margin-top:10px"><div class="eyebrow">গত ৭ দিনে অন্তত একটি কাজের দিন</div><div class="big">${activeDays}/7 দিন</div><div class="progress"><span style="width:${activeDays/7*100}%"></span></div></div><p class="feature-note">এটি তোমার নিজস্ব অগ্রগতির রিপোর্ট—নিজেকে দোষ দেওয়ার জন্য নয়। আগামী সপ্তাহে একটি ছোট লক্ষ্য বেছে নাও।</p>`;}
+
+function renderMotivation(){
+ const day=Math.floor(new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate()).getTime()/86400000);
+ $('dailyQuote').textContent=DAILY_QUOTES[((day%DAILY_QUOTES.length)+DAILY_QUOTES.length)%DAILY_QUOTES.length];
+ const list=$('lifeRulesList');
+ list.innerHTML=lifeRules.length?lifeRules.map((r,i)=>`<div class="life-rule"><span class="gold">${i+1}.</span><div class="life-rule-text">${escapeHtml(r.text)}</div><div class="life-rule-actions"><button class="secondary small-btn" type="button" data-edit-rule="${escapeHtml(r.id)}" aria-label="নিয়ম সম্পাদনা">✎</button><button class="secondary small-btn" type="button" data-delete-rule="${escapeHtml(r.id)}" aria-label="নিয়ম মুছুন">×</button></div></div>`).join(''):'<div class="sub">এখনও নিজের কোনো নিয়ম যোগ করোনি। প্রথম নিয়মটি লিখে ফেলো।</div>';
+}
+function openLifeRuleForm(rule=null){editingLifeRuleId=rule?rule.id:null;$('lifeRuleInput').value=rule?rule.text:'';$('saveLifeRule').textContent=rule?'পরিবর্তন সেভ করো':'নিয়ম সেভ করো';$('lifeRuleForm').classList.remove('hidden');$('toggleRuleForm').classList.add('hidden');$('lifeRuleInput').focus();}
+function closeLifeRuleForm(){$('lifeRuleForm').classList.add('hidden');$('toggleRuleForm').classList.remove('hidden');$('lifeRuleForm').reset();editingLifeRuleId=null;}
+function render(){
+ const p=state.player,l=levelFromTotalXp(p.totalXp),today=state.tasks.filter(t=>t.active&&t.period==='daily'),done=today.filter(isCompleted).length;
+ $('levelLabel').textContent=`Level ${l.level}`;$('rankLabel').textContent=l.level>=10?'Elite Adventurer':l.level>=5?'Skilled Adventurer':'New Adventurer';
+ $('xpLabel').textContent=`${l.intoLevel} / ${l.needed} XP`;$('levelProgress').style.width=`${Math.min(100,l.intoLevel/l.needed*100)}%`;
+ $('totalXp').textContent=`${p.totalXp} XP`;$('coins').textContent=`${p.coins} ◈`;$('streak').textContent=`${p.streak} 🔥`;
+ $('streakHint').textContent=p.streak>=7?'দারুণ ধারাবাহিকতা!':p.streak>0?'এভাবেই চালিয়ে যাও':'আজ একটি Quest শেষ করো';
+ const milestone=p.streak<3?3:p.streak<7?7:p.streak<14?14:30;
+ $('streakMilestone').textContent=`${milestone} দিনের লক্ষ্য`;$('streakProgressLabel').textContent=`${Math.min(p.streak,milestone)} / ${milestone} দিন`;$('streakProgress').style.width=`${Math.min(100,p.streak/milestone*100)}%`;
+ renderTasks();renderShop();renderProfile();renderMotivation();document.documentElement.dataset.theme=p.theme;$('themeToggle').textContent=p.theme==='dark'?'☀️':'🌙';save();
+}
+function switchView(viewId){
+ ['dashboardView','tasksView','shopView','profileView','featuresView'].forEach(id=>$(id).classList.toggle('hidden',id!==viewId));
+ document.querySelectorAll('[data-view]').forEach(btn=>btn.classList.toggle('active',btn.dataset.view===viewId));
+ window.scrollTo(0,0);
+}
+function toggleTheme(){state.player.theme=state.player.theme==='dark'?'light':'dark';save();render();}
+function addTask(event){
+ event.preventDefault();const name=$('taskName').value.trim();if(!name){showToast('কাজের নাম লিখো।');return;}
+ state.tasks.unshift({id:newId(),name,difficulty:$('taskDifficulty').value,period:$('taskPeriod').value,createdAt:Date.now(),active:true});
+ $('taskForm').reset();save();render();showToast('নতুন Quest যোগ হয়েছে!');switchView('tasksView');
+}
+function deleteTask(id){const task=state.tasks.find(t=>t.id===id);if(!task)return;if(!confirm(`“${task.name}” Quest মুছে ফেলবে? পুরোনো ইতিহাস থাকবে।`))return;state.tasks=state.tasks.filter(t=>t.id!==id);save();render();showToast('Quest মুছে ফেলা হয়েছে।');}
+function addReward(event){event.preventDefault();const name=$('rewardName').value.trim(),cost=Number($('rewardCost').value),icon=$('rewardIcon').value.trim()||'🎁';if(!name||!Number.isFinite(cost)||cost<1){showToast('রিওয়ার্ডের নাম ও সঠিক মূল্য দাও।');return;}state.rewards.push({id:newId(),name,icon,cost:Math.floor(cost),unlocked:false});$('rewardForm').reset();$('rewardCost').value=30;$('rewardIcon').value='🎁';save();render();showToast('নতুন Reward যোগ হয়েছে।');}
+function buyReward(id){const r=state.rewards.find(x=>x.id===id);if(!r||r.unlocked)return;if(state.player.coins<r.cost){showToast('পর্যাপ্ত Coins নেই।');return;}if(!confirm(`${r.name} আনলক করতে ${r.cost} Coins খরচ হবে। এগোবে?`))return;state.player.coins-=r.cost;r.unlocked=true;save();render();showToast(`${r.name} আনলক হয়েছে!`);}
+function exportBackup(){
+ const payload={app:'Life Level Up',schemaVersion:4,exportedAt:new Date().toISOString(),state,deenLogs,deenClaims,lifeRules,routineItems,routineChecks,habits,habitChecks,journalEntries};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+ const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`life-level-up-backup-${localDateKey()}.json`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);showToast('Backup ফাইল তৈরি হয়েছে।');
+}
+function importBackupFile(file){
+ if(!file)return;const reader=new FileReader();
+ reader.onload=()=>{try{const parsed=JSON.parse(String(reader.result));const candidate=normalizeState(parsed.state||parsed);if(!confirm('Restore করলে বর্তমান অ্যাপের ডেটা প্রতিস্থাপিত হবে। আগে Backup নিয়েছ তো? Restore করবে?'))return;state=candidate;if(Array.isArray(parsed.deenLogs)){deenLogs=parsed.deenLogs.filter(x=>x&&typeof x.id==='string'&&typeof x.activity==='string'&&typeof x.date==='string').slice(0,1000);saveDeenLogs();}if(Array.isArray(parsed.deenClaims)){deenClaims=parsed.deenClaims.filter(x=>x&&typeof x.key==='string').slice(0,3000);saveDeenClaims();}if(Array.isArray(parsed.lifeRules)){lifeRules=parsed.lifeRules.filter(x=>x&&typeof x.id==='string'&&typeof x.text==='string').slice(0,30);saveLifeRules();}if(Array.isArray(parsed.routineItems)){routineItems=parsed.routineItems.filter(x=>x&&typeof x.id==='string'&&typeof x.text==='string').slice(0,20);routineChecks=Array.isArray(parsed.routineChecks)?parsed.routineChecks.filter(x=>x&&typeof x.id==='string'&&typeof x.date==='string').slice(0,5000):[];saveRoutine();}if(Array.isArray(parsed.habits)){habits=parsed.habits.filter(x=>x&&typeof x.id==='string'&&typeof x.name==='string').slice(0,30);habitChecks=Array.isArray(parsed.habitChecks)?parsed.habitChecks.filter(x=>x&&typeof x.id==='string'&&typeof x.date==='string').slice(0,10000):[];saveHabits();}if(Array.isArray(parsed.journalEntries)){journalEntries=parsed.journalEntries.filter(x=>x&&typeof x.id==='string'&&typeof x.date==='string').slice(0,365);saveJournal();}save();render();showToast('Backup Restore সফল হয়েছে।');}catch(err){showToast(err.message||'ফাইল পড়া যায়নি।');}};
+ reader.onerror=()=>showToast('ফাইল পড়া যায়নি।');reader.readAsText(file);
+}
+function resetData(){if(!confirm('সব XP, Coins, Quest ও ইতিহাস মুছে ডেমো ডেটা ফিরিয়ে আনবে? আগে Backup নাও।'))return;state=defaultState();routineItems=ROUTINE_DEFAULTS.map(x=>({...x}));routineChecks=[];habits=[{id:'water',name:'পর্যাপ্ত পানি পান'},{id:'read',name:'প্রতিদিন কিছু শেখা'},{id:'tidy',name:'নিজের জায়গা গুছানো'}];habitChecks=[];journalEntries=[];saveRoutine();saveHabits();saveJournal();save();render();switchView('dashboardView');showToast('ডেমো ডেটা রিসেট হয়েছে।');}
+
+const SKILLS=[{id:'focus',name:'Deep Focus',icon:'🎯',cost:25,desc:'Focus সেশনে +৫ বোনাস Coins'},{id:'discipline',name:'Discipline',icon:'🛡️',cost:40,desc:'প্রথম দৈনিক Quest-এ +২ বোনাস Coins'},{id:'scholar',name:'Scholar',icon:'📚',cost:60,desc:'শেখার পথে ধারাবাহিকতার স্মারক'},{id:'creator',name:'Creator',icon:'🎨',cost:80,desc:'নিজের Quest-কে দক্ষতার অংশ করো'}];
+let focusInterval=null,focusSeconds=25*60,focusRunning=false;
+function statCounts(){const done=state.completions;return {strength:done.filter(c=>{const t=state.tasks.find(t=>t.id===c.taskId);return t&&t.difficulty==='hard'}).length,intelligence:done.filter(c=>{const t=state.tasks.find(t=>t.id===c.taskId);return t&&/পড়|পড়া|গণিত|হোমওয়ার্ক|homework|study|read/i.test(t.name)}).length,discipline:state.player.bestStreak,creativity:state.tasks.filter(t=>t.createdAt&&t.createdAt>Date.now()-30*86400000).length};}
+function featurePanel(title,body){$('featureDetail').innerHTML=`<div class="row between"><h3>${title}</h3><button class="secondary small-btn" data-close-feature type="button">বন্ধ</button></div>${body}`;$('featureDetail').classList.remove('hidden');if(state.player.animations)$('featureDetail').classList.add('micro-animate');}
+
+const DEEN_KEY='life-level-up-deen-v1';
+const DEEN_ACTIVITIES=[
+ {id:'prayer',icon:'🕌',label:'নামাজ / ইবাদত',xp:50,coins:25},
+ {id:'help',icon:'🤝',label:'কাউকে সাহায্য করেছি',xp:25,coins:12},
+ {id:'kindness',icon:'💚',label:'ভালো ব্যবহার / দয়া',xp:20,coins:10},
+ {id:'selfcontrol',icon:'🧭',label:'নিজের মূল্যবোধ মেনে ভালো সিদ্ধান্ত নিয়েছি',xp:30,coins:15},
+ {id:'thought',icon:'🌤️',label:'কঠিন চিন্তা বা প্রলোভন এলে ভালো সিদ্ধান্ত নিয়েছি',xp:30,coins:15},
+ {id:'values',icon:'🌱',label:'নিজের মূল্যবোধের সঙ্গে মিল রেখে অনুপযুক্ত কনটেন্ট এড়িয়ে চলেছি',xp:30,coins:15},
+ {id:'gratitude',icon:'🤲',label:'কৃতজ্ঞতা / দোয়া / আত্মপর্যালোচনা',xp:20,coins:10},
+ {id:'custom',icon:'✨',label:'অন্য কোনো ভালো কাজ',xp:20,coins:10}
+];
+function loadDeenLogs(){try{const v=JSON.parse(localStorage.getItem(DEEN_KEY)||'[]');return Array.isArray(v)?v.filter(x=>x&&typeof x.id==='string'&&typeof x.activity==='string'&&typeof x.date==='string').slice(0,1000):[]}catch(e){return []}}
+let deenLogs=loadDeenLogs();
+function saveDeenLogs(){localStorage.setItem(DEEN_KEY,JSON.stringify(deenLogs));}
+const DEEN_CLAIMS_KEY='life-level-up-deen-claims-v1';
+function loadDeenClaims(){try{const v=JSON.parse(localStorage.getItem(DEEN_CLAIMS_KEY)||'[]');return Array.isArray(v)?v.filter(x=>x&&typeof x.key==='string').slice(0,3000):[]}catch(e){return []}}
+let deenClaims=loadDeenClaims();
+function saveDeenClaims(){localStorage.setItem(DEEN_CLAIMS_KEY,JSON.stringify(deenClaims));}
+function openDeenFeature(){
+ const today=localDateKey();
+ const todayLogs=deenLogs.filter(x=>x.date===today).sort((a,b)=>b.at-a.at);
+ const options=DEEN_ACTIVITIES.map(a=>`<option value="${a.id}">${a.icon} ${a.label} · +${a.xp} XP / +${a.coins} Coins</option>`).join('');
+ const logMarkup=todayLogs.length?todayLogs.map(x=>{const a=DEEN_ACTIVITIES.find(a=>a.id===x.activity);return `<div class="badge-item"><div class="badge-icon">${a?a.icon:'🌿'}</div><div class="item-main"><strong>${escapeHtml(a?a.label:'ভালো কাজ')}</strong><small>${escapeHtml(x.note||'কোনো নোট যোগ করা হয়নি')} · ${x.rewarded?` +${x.xp||10} XP · +${x.coins||5} Coins`:'আগের লগ'}</small></div><button class="secondary small-btn" data-deen-delete="${escapeHtml(x.id)}" type="button" aria-label="লগ মুছুন">মুছুন</button></div>`}).join(''):'<div class="empty">আজকের কোনো লগ নেই। চাইলে একটি ছোট ভালো কাজ যোগ করো।</div>';
+ const total=deenLogs.length,days=new Set(deenLogs.map(x=>x.date)).size;
+ const body=`<div class="card" style="box-shadow:none;margin-bottom:12px"><strong>ছোট ভালো কাজও গুরুত্বপূর্ণ।</strong><p class="feature-note">এটি তোমার ব্যক্তিগত স্মরণিকা। ইবাদতের লগে +৫০ XP ও +২৫ Coins; অন্য ভালো কাজেও কাজভেদে আলাদা পুরস্কার—প্রতি ধরনের কাজের জন্য দিনে একবার। ইবাদত বা মানুষের মূল্য কোনো স্কোর দিয়ে মাপা হয় না; কোনো দিন বাদ গেলে শাস্তি বা পয়েন্ট কাটা নেই।</p><div class="stat-grid" style="margin-top:12px"><div><div class="eyebrow">মোট লগ</div><div class="big">${total}</div></div><div><div class="eyebrow">যে দিনগুলোতে লগ করেছ</div><div class="big">${days}</div></div></div></div><form id="deenLogForm"><div class="form-grid"><div class="field full"><label for="deenActivity">আজ কী ট্র্যাক করতে চাও?</label><select id="deenActivity">${options}</select></div><div class="field full"><label for="deenNote">ছোট নোট (ঐচ্ছিক)</label><input id="deenNote" maxlength="120" placeholder="যেমন: একজন বন্ধুকে পড়ায় সাহায্য করেছি"></div><div class="field full"><button class="primary full" type="submit">＋ লগ যোগ করো · কাজভেদে XP / Coins</button></div></div></form><h3 style="margin:18px 0 8px">আজকের লগ</h3>${logMarkup}<p class="feature-note">এটি ব্যক্তিগত লগ—কোনো ধর্মীয় বা নৈতিক বিচার নয়। লগগুলো এই ফোনে থাকে এবং Backup/Restore-এ অন্তর্ভুক্ত। নোটে খুব ব্যক্তিগত তথ্য না লেখাই ভালো।</p>`;
+ featurePanel('🌿 Deen & Character',body);
+}
+
+
+const PHOTO_THEME_KEY='life-level-up-photo-theme-v1';
+function loadPhotoTheme(){try{return JSON.parse(localStorage.getItem(PHOTO_THEME_KEY)||'null')}catch(e){return null}}
+let photoTheme=loadPhotoTheme();
+function applyPhotoTheme(){
+ const root=document.documentElement;
+ if(photoTheme&&typeof photoTheme.dataUrl==='string'&&photoTheme.dataUrl.startsWith('data:image/')){
+  root.style.setProperty('--photo-theme-image',`url("${photoTheme.dataUrl}")`);
+  document.body.classList.add('photo-theme-active');
+  root.style.setProperty('--photo-theme-overlay',String(Math.max(0.25,Math.min(0.85,Number(photoTheme.overlay)||0.62))));
+ }else{root.style.removeProperty('--photo-theme-image');root.style.removeProperty('--photo-theme-overlay');document.body.classList.remove('photo-theme-active');}
+}
+const WALLPAPER_KEY='life-level-up-wallpaper-themes-v1';
+const WALLPAPERS=[
+ {id:1,name:'Silent Climb',bn:'নীরব অগ্রযাত্রা',price:100,requiredLevel:1,rarity:'Common',src:'themes/theme1.jpg'},
+ {id:2,name:'Shadow Rider',bn:'ছায়ার অশ্বারোহী',price:150,requiredLevel:2,rarity:'Common',src:'themes/theme2.jpg'},
+ {id:3,name:'Lone Warrior',bn:'একাকী যোদ্ধা',price:200,requiredLevel:3,rarity:'Rare',src:'themes/theme3.jpg'},
+ {id:4,name:'Storm Walker',bn:'ঝড়ের পথিক',price:250,requiredLevel:4,rarity:'Rare',src:'themes/theme4.jpg'},
+ {id:5,name:'Ascension',bn:'উচ্চতার সিঁড়ি',price:300,requiredLevel:5,rarity:'Epic',src:'themes/theme5.jpg'},
+ {id:6,name:'The Wanderer',bn:'অদম্য পথিক',price:350,requiredLevel:6,rarity:'Epic',src:'themes/theme6.jpg'},
+ {id:7,name:'Crimson Oath',bn:'লাল শপথ',price:400,requiredLevel:7,rarity:'Epic',src:'themes/theme7.jpg'},
+ {id:8,name:'Night Guardian',bn:'রাত্রির প্রহরী',price:450,requiredLevel:8,rarity:'Legendary',src:'themes/theme8.jpg'},
+ {id:9,name:'Dark Sentinel',bn:'অন্ধকার প্রহরী',price:500,requiredLevel:10,rarity:'Legendary',src:'themes/theme9.jpg'}
+];
+function getWallpaperState(){try{return JSON.parse(localStorage.getItem(WALLPAPER_KEY)||'{"owned":[],"active":null}')}catch(e){return {owned:[],active:null}}}
+let wallpaperState=getWallpaperState();
+function applyWallpaper(){const t=WALLPAPERS.find(x=>x.id===wallpaperState.active);if(t){document.documentElement.style.setProperty('--wallpaper-image',`url("${t.src}")`);document.body.classList.add('wallpaper-theme-active')}else{document.documentElement.style.removeProperty('--wallpaper-image');document.body.classList.remove('wallpaper-theme-active')}}
+function saveWallpaperState(){localStorage.setItem(WALLPAPER_KEY,JSON.stringify(wallpaperState));applyWallpaper()}
+function openWallpaperShop(){const currentLevel=levelFromTotalXp(state.player.totalXp).level;const cards=WALLPAPERS.map(t=>{const owned=wallpaperState.owned.includes(t.id),active=wallpaperState.active===t.id,levelLocked=currentLevel<t.requiredLevel&&!owned;return `<article class="wallpaper-card ${active?'wallpaper-active':''} ${levelLocked?'wallpaper-locked':''}"><img loading="lazy" src="${t.src}" alt="${t.name} wallpaper"><div class="wallpaper-info"><strong>${t.bn}</strong><small>${t.name} · ${t.rarity}</small><small>${levelLocked?'🔒 প্রয়োজনীয় Level: '+t.requiredLevel:'Level '+t.requiredLevel+' থেকে পাওয়া যাবে'}</small><button class="${active||levelLocked?'secondary':owned?'secondary':'primary'} small-btn" type="button" data-wallpaper="${t.id}" ${active||levelLocked?'disabled':''}>${active?'✓ Active':levelLocked?'🔒 Level '+t.requiredLevel+' প্রয়োজন':owned?'Apply Theme':`🪙 ${t.price} Coins`}</button></div></article>`}).join('');featurePanel('🌑 Wallpaper Theme Shop',`<div class="card" style="box-shadow:none;margin-bottom:12px"><div class="row between"><div><div class="eyebrow">তোমার Coins</div><div class="big">🪙 ${state.player.coins.toLocaleString('en-US')}</div></div><span class="pill">Level ${currentLevel} · ৯টি Theme</span></div><p class="feature-note">প্রতিটি Theme কিনতে Coins এবং নির্দিষ্ট Level—দুটোই লাগবে। Level বাড়লে নতুন Theme আনলক হবে। একবার কিনলে আবার Apply করতে Coins লাগবে না। দাম ১০০–৫০০ Coins; আসল টাকা লাগে না।</p></div><div class="wallpaper-theme-grid">${cards}</div><p class="feature-note" style="margin-top:12px">Theme-গুলো অ্যাপের সঙ্গে অফলাইনে থাকবে।</p>`)}
+function openPhotoThemeFeature(){
+ const cost=5000,owned=!!photoTheme;
+ const preview=owned?`<div class="photo-theme-preview" style="background-image:linear-gradient(rgba(12,15,22,var(--photo-theme-overlay,.62)),rgba(12,15,22,var(--photo-theme-overlay,.62)),var(--photo-theme-image));background-size:cover;background-position:center;padding:24px;border-radius:16px;color:white"><strong>Life Level Up</strong><p>তোমার ছবি এখন অ্যাপের ব্যাকগ্রাউন্ডে ✨</p><span class="pill">Live preview</span></div>`:'<div class="empty">এখনও কোনো Photo Theme কেনা হয়নি। ছবি নির্বাচন করলে কেনার আগে Preview দেখতে পারবে।</div>';
+ const body=`<div class="card" style="box-shadow:none;margin-bottom:12px"><div class="stat-grid"><div><div class="eyebrow">Theme unlock cost</div><div class="big">🪙 ${cost.toLocaleString('en-US')}</div></div><div><div class="eyebrow">তোমার Coins</div><div class="big">🪙 ${state.player.coins.toLocaleString('en-US')}</div></div></div><p class="feature-note">ফোন থেকে একটি ছবি বেছে নাও। ছবিটি অ্যাপের পেছনে থাকবে, আর লেখা ও বোতাম তার উপরে দেখা যাবে। ছবি এই ফোনেই থাকবে। Theme আনলক করতে ${cost.toLocaleString('en-US')} Coins লাগবে; একবার কিনলে এই Theme আবার ব্যবহার করতে আলাদা Coins লাগবে না।</p></div><div class="field"><label for="photoThemeFile">ফোন থেকে ছবি বেছে নাও</label><input id="photoThemeFile" type="file" accept="image/*"></div><div class="field" style="margin-top:12px"><label for="photoThemeOverlay">লেখা পরিষ্কার রাখার জন্য ব্যাকগ্রাউন্ড ডিম করার মাত্রা</label><input id="photoThemeOverlay" type="range" min="25" max="85" value="${photoTheme?.overlay?Math.round(photoTheme.overlay*100):62}"></div><div id="photoThemePreview" style="margin-top:12px">${preview}</div><div class="form-grid" style="margin-top:12px"><button class="primary" type="button" id="buyPhotoTheme" ${owned?'disabled':''}>${owned?'Theme কেনা হয়েছে':'🪙 '+cost.toLocaleString('en-US')+' Coins দিয়ে Unlock'}</button><button class="secondary" type="button" id="removePhotoTheme" ${owned?'':'disabled'}>Theme বন্ধ করো</button></div><p class="feature-note" style="margin-top:10px">ছবি সিলেক্ট করলেই Coins কাটবে না। Preview দেখে তারপর Unlock চাপতে হবে। ছবি খুব বড় হলে ফোনের স্টোরেজ বাঁচাতে অ্যাপ ছবিটি ছোট করে রাখে।</p>`;
+ featurePanel('🖼️ My Photo Theme',body);
+}
+function compressThemeImage(file){
+ return new Promise((resolve,reject)=>{
+  if(!file||!file.type||!file.type.startsWith('image/')){reject(new Error('একটি ছবি নির্বাচন করো।'));return;}
+  const reader=new FileReader();
+  reader.onerror=()=>reject(new Error('ছবিটি পড়া যায়নি।'));
+  reader.onload=()=>{
+   const img=new Image();
+   img.onerror=()=>reject(new Error('ছবিটি খোলা যায়নি।'));
+   img.onload=()=>{
+    const max=1200,scale=Math.min(1,max/Math.max(img.width,img.height));
+    const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));
+    const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    try{resolve(canvas.toDataURL('image/jpeg',0.78));}catch(e){reject(new Error('ছবিটি সংরক্ষণ করা যায়নি।'));}
+   };img.src=String(reader.result);
+  };reader.readAsDataURL(file);
+ });
+}
+
+function openFeature(name){const done=state.completions.length,stats=statCounts(),today=localDateKey();let html='';
+ if(name==='deen'){openDeenFeature();return;}
+ if(name==='customtheme'){openPhotoThemeFeature();return;}
+ if(name==='wallpapers'){openWallpaperShop();return;}
+ if(name==='routine'){html=renderRoutine();featurePanel('🌅 Daily Routine',html);}
+ if(name==='habits'){html=renderHabits();featurePanel('🔥 Habit Tracker',html);}
+ if(name==='journal'){html=renderJournal();featurePanel('📓 Daily Journal',html);}
+ if(name==='weeklyreview'){html=renderWeeklyReview();featurePanel('🗓️ Weekly Review',html);}
+ if(name==='stats'){html=`<div class="stat-grid"><div class="card"><div class="eyebrow">Strength</div><div class="big">${stats.strength}</div><div class="sub">Hard Quest</div></div><div class="card"><div class="eyebrow">Intelligence</div><div class="big">${stats.intelligence}</div><div class="sub">শেখার Quest</div></div><div class="card"><div class="eyebrow">Discipline</div><div class="big">${stats.discipline}</div><div class="sub">সেরা Streak · দিন</div></div><div class="card"><div class="eyebrow">Creativity</div><div class="big">${stats.creativity}</div><div class="sub">গত ৩০ দিনে তৈরি Quest</div></div></div><p class="feature-note">এগুলো কাজের ইতিহাস থেকে হিসাব করা হয়—কোনো ব্যক্তিগত বিচার নয়।</p>`;featurePanel('📊 Player Stats',html);}
+ if(name==='achievements'){const defs=[['🌱','প্রথম পদক্ষেপ','১টি Quest সম্পন্ন',done>=1],['🔥','ধারাবাহিক','৩ দিনের সেরা Streak',state.player.bestStreak>=3],['🏅','Quest Hunter','১০টি Quest সম্পন্ন',done>=10],['💎','Coin Collector','১০০ Coins জমা/উপার্জন',state.player.coins>=100],['⭐','Level 5','Level 5-এ পৌঁছাও',levelFromTotalXp(state.player.totalXp).level>=5],['🎒','Collector','একটি Reward আনলক',state.rewards.some(r=>r.unlocked)]];html=defs.map(d=>`<div class="badge-item ${d[3]?'':'locked'}"><div class="badge-icon">${d[0]}</div><div class="item-main"><strong>${d[1]}</strong><small>${d[2]}</small></div><span>${d[3]?'✓':'🔒'}</span></div>`).join('');featurePanel('🏅 Achievements & Badges',html);}
+ if(name==='boss'){const start=new Date();const wk=weekKey(start);const weekDone=state.completions.filter(c=>c.week===wk).length;const target=10;const pct=Math.min(100,weekDone/target*100);html=`<div class="row"><div class="badge-icon">🐉</div><div class="item-main"><strong>Weekly Quest Guardian</strong><small>এই সপ্তাহে ${target}টি Quest সম্পন্ন করো</small></div></div><div class="boss-progress"><span style="width:${pct}%"></span></div><div class="row between"><span class="muted">${Math.min(weekDone,target)} / ${target} Quest</span><strong>${Math.round(pct)}%</strong></div><p class="feature-note">${weekDone>=target?'Boss পরাজিত! অসাধারণ কাজ।':'সাধারণ Quests শেষ করলেই অগ্রগতি বাড়বে।'}</p>${weekDone>=target?'<div class="pill" style="display:inline-block;margin-top:10px">🏆 সাপ্তাহিক লক্ষ্য পূরণ</div>':''}`;featurePanel('🐉 Boss Battle',html);}
+ if(name==='skills'){html=SKILLS.map(sk=>{const has=state.player.skills.includes(sk.id);return `<div class="skill-item ${has?'':'locked'}"><div class="badge-icon">${sk.icon}</div><div class="item-main"><strong>${sk.name}</strong><small>${sk.desc} · ${sk.cost} Coins</small></div><button class="${has?'secondary':'primary'} small-btn" data-skill="${sk.id}" ${has?'disabled':''}>${has?'আনলক ✓':'আনলক'}</button></div>`}).join('');featurePanel('🌱 Skill Tree',html);}
+ if(name==='calendar'){const days=[];const now=new Date();for(let i=29;i>=0;i--){const d=new Date(now.getFullYear(),now.getMonth(),now.getDate()-i);const key=localDateKey(d);const has=state.completions.some(c=>c.date===key);days.push(`<div class="cal-day ${has?'has':''} ${key===today?'today':''}" title="${key}: ${has?'Quest সম্পন্ন':'কোনো completion নেই'}">${d.getDate()}</div>`)}html=`<div class="sub" style="margin-bottom:10px">গত ৩০ দিন · রঙিন ঘর মানে অন্তত একটি Quest সম্পন্ন</div><div class="calendar-grid">${days.join('')}</div><p class="feature-note">তারিখ ফোনের স্থানীয় সময় অনুযায়ী গণনা করা হয়।</p>`;featurePanel('🗓️ Quest Calendar',html);}
+ if(name==='focus'){const mm=String(Math.floor(focusSeconds/60)).padStart(2,'0'),ss=String(focusSeconds%60).padStart(2,'0');html=`<div class="sub" style="text-align:center">একবারে একটি কাজে মনোযোগ দাও</div><div class="timer-face" id="focusFace">${mm}:${ss}</div><div class="focus-actions"><button class="primary" data-focus-action="toggle">${focusRunning?'Pause':'Start'}</button><button class="secondary" data-focus-action="reset">Reset</button></div><p class="feature-note">সম্পন্ন Focus Session: ${state.player.focusSessions||0} · ২৫ মিনিটের পর ছোট বিরতি নাও।</p>`;featurePanel('⏱️ Focus Mode',html);}
+ if(name==='inventory'){const items=state.rewards.filter(r=>r.unlocked);html=items.length?items.map(r=>`<div class="inventory-item"><div class="badge-icon">${escapeHtml(r.icon)}</div><div class="item-main"><strong>${escapeHtml(r.name)}</strong><small>${state.player.equippedReward===r.id?'Equipped':'সংগ্রহে আছে'}</small></div><button class="secondary small-btn" data-equip="${r.id}">${state.player.equippedReward===r.id?'পরানো আছে':'Equip'}</button></div>`).join(''):'<div class="empty">এখনও কোনো আইটেম নেই। Shop থেকে Reward আনলক করলে এখানে দেখা যাবে।</div>';featurePanel('🎒 Inventory & Equipment',html);}
+ if(name==='analytics'){const rows=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const key=localDateKey(d);const count=state.completions.filter(c=>c.date===key).length;rows.push({label:['রবি','সোম','মঙ্গল','বুধ','বৃহ','শুক্র','শনি'][d.getDay()],count})}const max=Math.max(1,...rows.map(r=>r.count));html=`<div class="stat-grid"><div class="card"><div class="eyebrow">মোট XP</div><div class="big">${state.player.totalXp}</div></div><div class="card"><div class="eyebrow">Quest সম্পন্ন</div><div class="big">${done}</div></div></div><h3 style="margin-top:18px">গত ৭ দিনের কাজ</h3>${rows.map(r=>`<div class="bar-row"><span>${r.label}</span><div class="bar-track"><div class="bar-fill" style="width:${r.count/max*100}%"></div></div><strong>${r.count}</strong></div>`).join('')}<p class="feature-note">এটি তোমার ফোনে থাকা completion history থেকে তৈরি।</p>`;featurePanel('📈 Progress Analytics',html);}
+ if(name==='custom'){html=`<form id="customQuestForm"><div class="form-grid"><div class="field full"><label for="cqName">Quest-এর নাম</label><input id="cqName" maxlength="100" required placeholder="যেমন: ১৫ মিনিট ইংরেজি অনুশীলন"></div><div class="field"><label for="cqXp">XP (১–৫০০)</label><input id="cqXp" type="number" min="1" max="500" value="15" required></div><div class="field"><label for="cqCoins">Coins (০–৫০০)</label><input id="cqCoins" type="number" min="0" max="500" value="5" required></div><div class="field"><label for="cqPeriod">পুনরাবৃত্তি</label><select id="cqPeriod"><option value="daily">প্রতিদিন</option><option value="weekly">সাপ্তাহিক</option></select></div><div class="field full"><button class="primary full" type="submit">＋ Custom Quest তৈরি</button></div></div></form><p class="feature-note">পুরস্কার নিজের মতো ঠিক করো; বাস্তব জীবনের লক্ষ্যকে ছোট ও সম্ভব রাখো।</p>`;featurePanel('✍️ Custom Quest Builder',html);}
+ if(name==='effects'){html=`<div class="row between"><div><strong>ছোট অ্যানিমেশন</strong><div class="sub">কার্ড ও ফলাফলে হালকা motion</div></div><button class="secondary small-btn" data-effect="animations">${state.player.animations?'চালু':'বন্ধ'}</button></div><div class="row between" style="margin-top:14px"><div><strong>সাউন্ড</strong><div class="sub">ডিফল্টে বন্ধ, চাইলে চালু করো</div></div><button class="secondary small-btn" data-effect="sound">${state.player.sound?'চালু':'বন্ধ'}</button></div><p class="feature-note">সাউন্ড শুধু বোতাম/লেভেল-আপের সংক্ষিপ্ত tone; চাইলে বন্ধ রাখতে পারো।</p>`;featurePanel('✨ Effects',html);}
+}
+function playSoftSound(){if(!state.player.sound)return;try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;const ctx=new C(),o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);o.frequency.value=660;g.gain.value=.035;o.start();o.stop(ctx.currentTime+.09);o.onended=()=>ctx.close()}catch(e){}}
+function addCustomQuest(e){e.preventDefault();const name=$('cqName').value.trim(),xp=Number($('cqXp').value),coins=Number($('cqCoins').value),period=$('cqPeriod').value;if(!name||!Number.isInteger(xp)||xp<1||xp>500||!Number.isInteger(coins)||coins<0||coins>500){showToast('Quest-এর নাম ও Reward ঠিক করে দাও।');return;}state.tasks.unshift({id:newId(),name,difficulty:xp>=40?'hard':xp>=20?'medium':'easy',period,createdAt:Date.now(),active:true,rewardXp:xp,rewardCoins:coins});save();render();showToast('Custom Quest তৈরি হয়েছে!');switchView('tasksView');}
+function handleFeatureClick(e){const wallpaperButton=e.target.closest('[data-wallpaper]');if(wallpaperButton){const theme=WALLPAPERS.find(t=>t.id===Number(wallpaperButton.dataset.wallpaper));if(!theme)return;const currentLevel=levelFromTotalXp(state.player.totalXp).level;if(currentLevel<theme.requiredLevel&&!wallpaperState.owned.includes(theme.id)){showToast(`এই Theme পেতে Level ${theme.requiredLevel} পর্যন্ত যেতে হবে।`);return;}if(wallpaperState.owned.includes(theme.id)){wallpaperState.active=theme.id;saveWallpaperState();openWallpaperShop();showToast(`${theme.bn} Theme চালু হয়েছে!`,true);return;}if(state.player.coins<theme.price){showToast('এই Theme কেনার জন্য আরও Coins দরকার।');return;}if(!confirm(`${theme.bn} Theme ${theme.price} Coins দিয়ে আনলক করবে?`))return;state.player.coins-=theme.price;wallpaperState.owned.push(theme.id);wallpaperState.active=theme.id;save();saveWallpaperState();render();openWallpaperShop();showToast(`${theme.bn} Theme আনলক হয়েছে!`,true);return;}const rc=e.target.closest('[data-routine-check]');if(rc){toggleCheck(routineChecks,rc.dataset.routineCheck);saveRoutine();openFeature('routine');return;}const rd=e.target.closest('[data-routine-delete]');if(rd){routineItems=routineItems.filter(x=>x.id!==rd.dataset.routineDelete);routineChecks=routineChecks.filter(x=>x.id!==rd.dataset.routineDelete);saveRoutine();openFeature('routine');return;}const hc=e.target.closest('[data-habit-check]');if(hc){toggleCheck(habitChecks,hc.dataset.habitCheck);saveHabits();openFeature('habits');return;}const hd=e.target.closest('[data-habit-delete]');if(hd){habits=habits.filter(x=>x.id!==hd.dataset.habitDelete);habitChecks=habitChecks.filter(x=>x.id!==hd.dataset.habitDelete);saveHabits();openFeature('habits');return;}const jd=e.target.closest('[data-journal-delete]');if(jd){journalEntries=journalEntries.filter(x=>x.id!==jd.dataset.journalDelete);saveJournal();openFeature('journal');showToast('Journal নোট মুছে ফেলা হয়েছে।');return;}if(e.target.closest('#removePhotoTheme')){photoTheme=null;localStorage.removeItem(PHOTO_THEME_KEY);applyPhotoTheme();openPhotoThemeFeature();showToast('Photo Theme বন্ধ করা হয়েছে।');return;}if(e.target.closest('#buyPhotoTheme')){const file=$('photoThemeFile')?.files?.[0];if(!window.__pendingThemeData){showToast('আগে ফোন থেকে একটি ছবি বেছে নিয়ে Preview দেখো।');return;}if(photoTheme){showToast('এই Theme আগে থেকেই আনলক করা আছে।');return;}if(state.player.coins<5000){showToast('এই Theme আনলক করতে আরও Coins লাগবে।');return;}if(!confirm('৫,০০০ Coins দিয়ে এই Photo Theme আনলক করবে?'))return;const overlay=Math.max(.25,Math.min(.85,(Number($('photoThemeOverlay')?.value||62))/100));photoTheme={dataUrl:window.__pendingThemeData,overlay,unlockedAt:Date.now()};try{localStorage.setItem(PHOTO_THEME_KEY,JSON.stringify(photoTheme));state.player.coins-=5000;save();applyPhotoTheme();openPhotoThemeFeature();showToast('Photo Theme আনলক হয়েছে!',true);playSoftSound();}catch(err){showToast('ফোনের স্টোরেজে জায়গা নেই। অন্য ছোট ছবি চেষ্টা করো।');}return;}const deenDelete=e.target.closest('[data-deen-delete]');if(deenDelete){deenLogs=deenLogs.filter(x=>x.id!==deenDelete.dataset.deenDelete);saveDeenLogs();openDeenFeature();showToast('ব্যক্তিগত লগ মুছে ফেলা হয়েছে।');return;}const tile=e.target.closest('[data-feature]');if(tile){openFeature(tile.dataset.feature);return;}if(e.target.closest('[data-close-feature]')){$('featureDetail').classList.add('hidden');return;}const sk=e.target.closest('[data-skill]');if(sk){const skill=SKILLS.find(x=>x.id===sk.dataset.skill);if(!skill||state.player.skills.includes(skill.id))return;if(state.player.coins<skill.cost){showToast('এই Skill-এর জন্য আরও Coins দরকার।');return;}state.player.coins-=skill.cost;state.player.skills.push(skill.id);save();render();openFeature('skills');showToast(`${skill.name} Skill আনলক হয়েছে!`);return;}const eq=e.target.closest('[data-equip]');if(eq){state.player.equippedReward=eq.dataset.equip;save();openFeature('inventory');showToast('Equipment আপডেট হয়েছে।');return;}const ef=e.target.closest('[data-effect]');if(ef){const k=ef.dataset.effect;state.player[k]=!state.player[k];save();openFeature('effects');showToast(k==='sound'?'Sound setting বদলেছে।':'Animation setting বদলেছে।');playSoftSound();return;}const fa=e.target.closest('[data-focus-action]');if(fa){if(fa.dataset.focusAction==='toggle'){if(focusRunning){clearInterval(focusInterval);focusRunning=false;openFeature('focus');}else{focusRunning=true;focusInterval=setInterval(()=>{focusSeconds--;const face=$('focusFace');if(face){face.textContent=`${String(Math.floor(focusSeconds/60)).padStart(2,'0')}:${String(focusSeconds%60).padStart(2,'0')}`;}if(focusSeconds<=0){clearInterval(focusInterval);focusRunning=false;focusSeconds=25*60;state.player.focusSessions=(state.player.focusSessions||0)+1;if(state.player.skills.includes('focus'))state.player.coins+=5;save();playSoftSound();showToast('Focus Session সম্পন্ন! বিরতি নাও।',true);openFeature('focus');}},1000);openFeature('focus');}return;}if(fa.dataset.focusAction==='reset'){clearInterval(focusInterval);focusRunning=false;focusSeconds=25*60;openFeature('focus');}}}
+$('featureTiles').addEventListener('click',handleFeatureClick);$('featureDetail').addEventListener('click',handleFeatureClick);let themePreviewJob=0;window.__pendingThemeData=null;
+$('featureDetail').addEventListener('change',async e=>{
+ if(e.target.id==='photoThemeFile'){
+  const job=++themePreviewJob;window.__pendingThemeData=null;
+  try{const data=await compressThemeImage(e.target.files&&e.target.files[0]);if(job!==themePreviewJob)return;window.__pendingThemeData=data;const overlay=Math.max(.25,Math.min(.85,Number($('photoThemeOverlay')?.value||62)/100));$('photoThemePreview').innerHTML=`<div style="position:relative;overflow:hidden;border-radius:16px;min-height:180px;background:#151923"><img alt="Theme preview" src="${data}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"><div style="position:absolute;inset:0;background:rgba(10,13,20,${overlay});display:flex;flex-direction:column;justify-content:center;align-items:center;padding:20px;text-align:center;color:white"><strong style="font-size:22px">Life Level Up</strong><p>তোমার ছবি, তোমার Theme</p><button class="primary" type="button" disabled>XP 120 · Coins 80</button></div></div>`;}catch(err){showToast(err.message||'ছবি প্রিভিউ করা যায়নি।');}
+ }
+});
+$('featureDetail').addEventListener('input',e=>{
+ if(e.target.id==='photoThemeOverlay'&&window.__pendingThemeData){const overlay=Math.max(.25,Math.min(.85,Number(e.target.value)/100));const preview=$('photoThemePreview');const overlayLayer=preview&&preview.querySelector('img')?.nextElementSibling;if(overlayLayer)overlayLayer.style.background=`rgba(10,13,20,${overlay})`;}
+});
+$('featureDetail').addEventListener('submit',e=>{
+ if(e.target.id==='routineAddForm'){e.preventDefault();const text=new FormData(e.target).get('routineName').toString().trim();if(!text)return;if(routineItems.length>=20){showToast('সর্বোচ্চ ২০টি রুটিন রাখা যাবে।');return;}routineItems.push({id:newId(),text});saveRoutine();openFeature('routine');showToast('রুটিন যোগ হয়েছে।');return;}
+ if(e.target.id==='habitAddForm'){e.preventDefault();const name=new FormData(e.target).get('habitName').toString().trim();if(!name)return;if(habits.length>=30){showToast('সর্বোচ্চ ৩০টি অভ্যাস রাখা যাবে।');return;}habits.push({id:newId(),name});saveHabits();openFeature('habits');showToast('নতুন অভ্যাস যোগ হয়েছে।');return;}
+ if(e.target.id==='journalForm'){e.preventDefault();const win=$('journalWin').value.trim(),learn=$('journalLearn').value.trim(),next=$('journalNext').value.trim(),date=localDateKey();if(!win&&!learn&&!next){showToast('কমপক্ষে একটি ঘর পূরণ করো।');return;}const existing=journalEntries.find(x=>x.date===date);if(existing){existing.win=win;existing.learn=learn;existing.next=next;existing.updatedAt=Date.now();}else{journalEntries.unshift({id:newId(),date,win,learn,next,createdAt:Date.now()});}journalEntries=journalEntries.slice(0,365);saveJournal();openFeature('journal');showToast('আজকের Journal সেভ হয়েছে!');return;}
+ if(e.target.id==='customQuestForm'){addCustomQuest(e);return;}
+ if(e.target.id==='deenLogForm'){
+  e.preventDefault();
+  const activity=$('deenActivity').value,note=$('deenNote').value.trim(),date=localDateKey();
+  if(!DEEN_ACTIVITIES.some(a=>a.id===activity))return;
+  const claimKey=`${date}:${activity}`;const alreadyRewarded=deenClaims.some(x=>x.key===claimKey);const reward=DEEN_ACTIVITIES.find(a=>a.id===activity);
+  if(alreadyRewarded){showToast('এই ধরনের কাজের আজকের XP/Coins আগেই পেয়েছ। কোনো পয়েন্ট কাটা হবে না।');return;}
+  deenClaims.unshift({key:claimKey,at:Date.now()});deenClaims=deenClaims.slice(0,3000);saveDeenClaims();deenLogs.unshift({id:newId(),activity,note,date,at:Date.now(),rewarded:true,xp:reward.xp,coins:reward.coins});
+  deenLogs=deenLogs.slice(0,1000);
+  state.player.totalXp+=reward.xp;state.player.coins+=reward.coins;state.player.level=Math.floor(state.player.totalXp/100)+1;save();saveDeenLogs();render();openDeenFeature();
+  showToast(`লগ যোগ হয়েছে: +${reward.xp} XP, +${reward.coins} Coins`,true);playSoftSound();
+ }
+});
+
+document.querySelectorAll('[data-view]').forEach(btn=>btn.addEventListener('click',()=>switchView(btn.dataset.view)));
+$('themeToggle').addEventListener('click',toggleTheme);$('themeToggle2').addEventListener('click',toggleTheme);
+$('goTasks').addEventListener('click',()=>switchView('tasksView'));
+$('taskForm').addEventListener('submit',addTask);$('rewardForm').addEventListener('submit',addReward);
+document.body.addEventListener('click',event=>{
+ const complete=event.target.closest('[data-complete]');if(complete){completeTask(complete.dataset.complete);return;}
+ const del=event.target.closest('[data-delete]');if(del){deleteTask(del.dataset.delete);return;}
+ const buy=event.target.closest('[data-buy]');if(buy){buyReward(buy.dataset.buy);}
+});
+$('toggleRuleForm').addEventListener('click',()=>openLifeRuleForm());
+$('cancelLifeRule').addEventListener('click',closeLifeRuleForm);
+$('lifeRuleForm').addEventListener('submit',e=>{e.preventDefault();const text=$('lifeRuleInput').value.trim();if(!text)return;if(editingLifeRuleId){const rule=lifeRules.find(x=>x.id===editingLifeRuleId);if(rule)rule.text=text;showToast('নিজের নিয়ম আপডেট হয়েছে।');}else{if(lifeRules.length>=30){showToast('সর্বোচ্চ ৩০টি নিয়ম রাখা যাবে।');return;}lifeRules.push({id:newId(),text,createdAt:Date.now()});showToast('নতুন Life Rule সেভ হয়েছে!');}saveLifeRules();renderMotivation();closeLifeRuleForm();});
+$('lifeRulesList').addEventListener('click',e=>{const edit=e.target.closest('[data-edit-rule]');if(edit){const rule=lifeRules.find(x=>x.id===edit.dataset.editRule);if(rule)openLifeRuleForm(rule);return;}const del=e.target.closest('[data-delete-rule]');if(del){const rule=lifeRules.find(x=>x.id===del.dataset.deleteRule);if(!rule)return;if(!confirm('এই Life Rule মুছে ফেলবে?'))return;lifeRules=lifeRules.filter(x=>x.id!==del.dataset.deleteRule);saveLifeRules();renderMotivation();showToast('Life Rule মুছে ফেলা হয়েছে।');}});
+$('exportBtn').addEventListener('click',exportBackup);
+$('importBtn').addEventListener('click',()=>$('importFile').click());
+$('importFile').addEventListener('change',event=>{importBackupFile(event.target.files&&event.target.files[0]);event.target.value='';});
+$('resetBtn').addEventListener('click',resetData);
+applyPhotoTheme();applyWallpaper();render();
+})();
+</script>
+</body>
+</html>
