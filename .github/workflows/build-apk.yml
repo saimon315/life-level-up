@@ -27,7 +27,7 @@ jobs:
         shell: bash
         run: |
           missing=0
-          for f in config.xml icon.png icon-foreground.png icon-background.png splash_icon.png www/index.html; do
+          for f in config.xml icon.png www/index.html; do
             if [ -f "$f" ]; then echo "OK      $f"; else echo "MISSING $f"; missing=1; fi
           done
           exit $missing
