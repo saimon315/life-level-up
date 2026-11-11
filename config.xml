@@ -10,9 +10,6 @@
     <icon src="icon.png" />
     <plugin name="cordova-plugin-local-notification-12" />
     <platform name="android">
-        <icon density="xxxhdpi" background="icon-background.png" foreground="icon-foreground.png" />
-        <preference name="AndroidWindowSplashScreenBackground" value="#ffffff" />
-        <preference name="AndroidWindowSplashScreenAnimatedIcon" value="splash_icon.png" />
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.VIBRATE" />
             <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
