@@ -23,7 +23,17 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      - name: Check required files
+        shell: bash
+        run: |
+          missing=0
+          for f in config.xml icon.png icon-foreground.png icon-background.png splash_icon.png www/index.html; do
+            if [ -f "$f" ]; then echo "OK      $f"; else echo "MISSING $f"; missing=1; fi
+          done
+          exit $missing
+
       - name: Install Cordova and Android platform
+        shell: bash
         run: |
           npm install
           npx cordova platform add android@13
@@ -31,34 +41,25 @@ jobs:
           npx cordova plugin add cordova-plugin-file
           npx cordova prepare android
 
-      - name: Apply full-bleed adaptive app icon
-        run: |
-          command -v convert >/dev/null || sudo apt-get install -y imagemagick
-          RES=platforms/android/app/src/main/res
-          mkdir -p "$RES/mipmap-anydpi-v26"
-          for spec in "mdpi 48 108" "hdpi 72 162" "xhdpi 96 216" "xxhdpi 144 324" "xxxhdpi 192 432"; do
-            set -- $spec
-            mkdir -p "$RES/mipmap-$1"
-            convert icon.png -resize "$2x$2" "$RES/mipmap-$1/ic_launcher.png"
-            convert icon-adaptive.png -resize "$3x$3" "$RES/mipmap-$1/ic_launcher_background.png"
-            convert -size "$3x$3" xc:none PNG32:"$RES/mipmap-$1/ic_launcher_foreground.png"
-          done
-          cat > "$RES/mipmap-anydpi-v26/ic_launcher.xml" <<'XML'
-          <?xml version="1.0" encoding="utf-8"?>
-          <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
-              <background android:drawable="@mipmap/ic_launcher_background"/>
-              <foreground android:drawable="@mipmap/ic_launcher_foreground"/>
-          </adaptive-icon>
-          XML
-          ls -R "$RES" | grep -i launcher || true
-
       - name: Build debug APK
-        run: npx cordova build android --debug
+        shell: bash
+        run: |
+          npx cordova build android --debug --verbose 2>&1 | tee build.log
+
+      - name: Show build result
+        if: always()
+        shell: bash
+        run: |
+          echo "---- APK files ----"
+          find platforms -name '*.apk' 2>/dev/null || true
+          echo "---- last 80 log lines ----"
+          tail -n 80 build.log 2>/dev/null || true
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
           name: life-level-up-debug-apk
-          path: platforms/android/app/build/outputs/apk/debug/app-debug.apk
+          path: platforms/android/app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
           retention-days: 14
+          
